@@ -24,6 +24,9 @@ double getRoomCost(int roomType, double queen1Price, double queen2Price,
 int getNumRooms();
 int getNumNights();
 void addToOrder(int numNights, int numRooms, double roomCost, double& subtotal);
+double calculateTaxes(double subtotal);
+
+
 
 int main() {
     int selection;
@@ -50,6 +53,7 @@ int main() {
                 int numNights = getNumNights();
                 roomCost = getRoomCost(roomChoice, queen1Price, queen2Price, king1Price, king2Price, luxurySuite);
                 addToOrder(numNights, numRooms, roomCost, subtotal);
+                calculateTaxes(subtotal);
             }
         }
     } while (selection != 0);
@@ -190,3 +194,15 @@ void addToOrder(int numNights, int numRooms,
     cout << "Total Cost: $" << reservation << endl << endl;
     subtotal += reservation;
 }
+
+double calculateTaxes(double subtotal) {
+	double taxDollarAmount;
+	double salesTax = 0.04;
+	
+	taxDollarAmount = subtotal * salesTax;
+	
+	subtotal += taxDollarAmount;
+	
+	return subtotal;
+}
+
